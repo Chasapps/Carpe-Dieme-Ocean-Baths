@@ -17,53 +17,51 @@
     <h1 id="ownerName" class="foil-emboss owner-name">Loading…</h1>
   </div>
 
-  <script>
-// Small inline script so the splash works even if JS modules fail.
-(() => {
+<script>
+(async () => {
   const ownerEl = document.getElementById('ownerName');
-  const bodyEl  = document.getElementById('splashBody');
-
   const LS_KEY = 'passportOwnerName';
+
   let name = null;
 
-  // 1. Try to load a previously saved name from this device.
+  // 1. Try loading from owner.txt
   try {
-    name = localStorage.getItem(LS_KEY);
-  } catch (e) {
-    // If localStorage is blocked, we just behave as if there's no saved name.
-    name = null;
-  }
-
-  // 2. If no name saved yet, ask the user once.
-  if (!name) {
-    const defaultName = 'Carpe Diem Passport';
-    const input = prompt('What name should appear on your passport?', defaultName);
-    name = (input && input.trim()) || defaultName;
-
-    // Best-effort save for next time.
-    try {
-      localStorage.setItem(LS_KEY, name);
-    } catch (e) {
-      // Ignore errors (e.g. storage disabled)
+    const res = await fetch('owner.txt', { cache: 'no-store' });
+    if (res.ok) {
+      name = (await res.text()).trim();
     }
+  } catch (e) {
+    console.warn('Could not load owner.txt');
   }
 
-  // 3. Show the chosen name on the passport cover.
-  if (ownerEl) {
-    ownerEl.textContent = name;
+  // 2. If file missing, fallback to saved localStorage
+  if (!name) {
+    try {
+      name = localStorage.getItem(LS_KEY);
+    } catch {}
   }
 
-  // 4. Any tap on the cover takes you into the overview map.
-  if (bodyEl) {
-    bodyEl.addEventListener('click', () => {
-      try {
-        // Gate flag so users can’t deep-link into the app without the splash.
-        sessionStorage.setItem('enteredViaSplash', '1');
-      } catch (e) {}
-      location.href = 'overview.html';
-    });
+  // 3. Final fallback
+  if (!name) {
+    name = 'Ocean Pool Passport';
   }
+
+  // Save it for other pages
+  try {
+    localStorage.setItem(LS_KEY, name);
+  } catch {}
+
+  if (ownerEl) ownerEl.textContent = name;
+
+  // Tap to enter
+  document.body.addEventListener('click', () => {
+    try {
+      sessionStorage.setItem('enteredViaSplash', '1');
+    } catch {}
+    location.href = 'overview.html';
+  });
 })();
 </script>
+
 </body>
 </html>
