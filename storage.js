@@ -7,9 +7,9 @@
 // Keys used in localStorage. Keeping them in one object means we
 // only have to change them in one place if we ever rename things.
 export const LS_KEYS = {
-  VISITED: 'harbour_pools_visited_v2_3',
-  SELECTION: 'harbour_pools_selected_v2_3',
-  STAMPS_PAGE: 'harbour_pools_stamps_page_v1'
+  VISITED: 'ocean_pools_visited_v2_3',
+  SELECTION: 'ocean_pools_selected_v2_3',
+  STAMPS_PAGE: 'ocean_pools_stamps_page_v1'
 };
 
 /**
