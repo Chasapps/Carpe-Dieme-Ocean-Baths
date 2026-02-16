@@ -38,7 +38,7 @@ function updateOverviewText(pools, visitedMap) {
     if (total === 0) {
       textEl.textContent = 'No pools configured.';
     } else {
-      textEl.textContent = `You’ve visited ${visitedCount} of ${total} harbour pools.`;
+      textEl.textContent = `You’ve visited ${visitedCount} of ${total} Ocean pools.`;
     }
   }
 }
