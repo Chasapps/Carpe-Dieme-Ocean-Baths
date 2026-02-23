@@ -62,5 +62,21 @@
     "lat": -33.764460,
     "lng": 151.301630,
     "stamp": "stamps/north-curl-curl.png"
-  }
+  },
+  {
+  "id": "clovelly-pool",
+  "name": "Clovelly Ocean Pool",
+  "suburb": "Clovelly",
+  "lat": -33.913822,
+  "lng": 151.266373,
+  "stamp": "stamps/clovelly-pool.png"
+},
+{
+  "id": "balmoral-baths",
+  "name": "Balmoral Baths",
+  "suburb": "Mosman",
+  "lat": -33.826986,
+  "lng": 151.253759,
+  "stamp": "stamps/balmoral-baths.png"
+}
 ]
