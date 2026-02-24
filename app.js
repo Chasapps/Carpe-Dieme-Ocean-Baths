@@ -313,8 +313,7 @@ function renderStamps(popId = null) {
       <div class="title">${p.name}</div>
       <div class="stamp ${popId === p.id ? 'pop' : ''}">
         <img src="${getStampSrc(p)}" alt="stamp">
-        <div class="label">${p.suburb || 'Stamped'}</div>
-      </div>
+           </div>
       <div class="stamp-date">${formatDateAU(v.date)}</div>
     `;
 
